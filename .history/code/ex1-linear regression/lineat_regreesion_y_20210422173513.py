@@ -162,6 +162,3 @@ plt.show()
 # learning rate(学习率)
 base = np.logspace(-1, -5, num=4) # 对数等比数列
 candidate = np.sort(np.concatenate((base, base*3)))
-
-epoch = 50
-fig, ax = plt.subplots(figsize=(16, 9))

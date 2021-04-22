@@ -131,37 +131,3 @@ plt.show()
 
 
 # 3- 选修章节
-raw_data = pd.read_csv('ex1data2.txt', names=['square', 'bedrooms', 'price'])
-# raw_data.head()
-
-# 标准化数据
-def normalize_feature(df):
-    return df.apply(lambda column: (column - column.mean()) / column.std())
-
-data = normalize_feature(raw_data)
-# data.head()
-
-# multi-var batch gradient decent(多变量批量梯度下降)
-X = get_X(data)
-print(X.shape, type(X))
-
-y = get_y(data)
-print(y.shape, type(y))
-
-alpha = 0.01 #学习率
-theta = np.zeros(X.shape[1]) # X.shape[1]: 特征数
-epoch = 500 #轮数
-
-final_theta, cost_data = batch_gradient_decent(theta, X, y, epoch, alpha=alpha)
-
-sns.lineplot(y=cost_data, x=np.arange(len(cost_data)))
-plt.xlabel('epoch', fontsize=18)
-plt.ylabel('cost', fontsize=18)
-plt.show()
-
-# learning rate(学习率)
-base = np.logspace(-1, -5, num=4) # 对数等比数列
-candidate = np.sort(np.concatenate((base, base*3)))
-
-epoch = 50
-fig, ax = plt.subplots(figsize=(16, 9))
